@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menú principal</title>
+    <link rel="stylesheet" href="{% static 'hello/css/styles.css' %}">
+</head>
+<body>
+    <h1>Menú principal</h1>
+    <div class="menu">
+        {% for o in opciones %}
+            <a class="menu-item" href="{% url o.url %}">
+                <span class="menu-icon">{{ o.icono }}</span>
+                {{ o.titulo }}
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>
