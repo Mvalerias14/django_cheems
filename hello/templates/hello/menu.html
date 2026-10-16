@@ -1,19 +1,17 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Menú principal</title>
-    <link rel="stylesheet" href="{% static 'hello/css/styles.css' %}">
-</head>
-<body>
-    <h1>Menú principal</h1>
-    <div class="menu">
+{% extends 'hello/base.html' %}
+
+{% block title %}Menú principal{% endblock %}
+
+{% block content %}
+    <h1>Sistema de órdenes de trabajo</h1>
+    <p class="subtitle">Selecciona a dónde quieres ir</p>
+
+    <div class="cards">
         {% for o in opciones %}
-            <a class="menu-item" href="{% url o.url %}">
-                <span class="menu-icon">{{ o.icono }}</span>
-                {{ o.titulo }}
+            <a class="card" href="{% url o.url %}">
+                <span class="card-icon">{{ o.icono }}</span>
+                <span class="card-title">{{ o.titulo }}</span>
             </a>
         {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}

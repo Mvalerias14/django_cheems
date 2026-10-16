@@ -1,16 +1,9 @@
+{% extends 'hello/base.html' %}
 
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Ordenes de trabajo</title>
-    <link rel="stylesheet" href="{% static 'hello/css/styles.css' %}">
-</head>
+{% block title %}Usuarios{% endblock %}
 
-<body>
-    <h1>Consulta de ordenes de trabajo</h1>
-
-    <script src="{% static 'hello/js/scripts.js' %}"></script>
+{% block content %}
+    <h1>Usuarios</h1>
 
     <table class="table-user">
         <thead>
@@ -25,10 +18,9 @@
                 <tr>
                     <td>{{ user.name }}</td>
                     <td>{{ user.account }}</td>
-                    <td>{{ user.profile.name }}</td>
+                    <td>{{ user.profile.name|default:"Sin perfil"|title }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+{% endblock %}

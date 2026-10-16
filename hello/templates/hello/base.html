@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Órdenes de trabajo{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'hello/css/styles.css' %}">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-title">MENÚ</div>
+        <nav>
+            <a href="{% url 'menu' %}" class="{% if request.resolver_match.url_name == 'menu' %}active{% endif %}">🏠 Inicio</a>
+            <a href="{% url 'usuarios' %}" class="{% if request.resolver_match.url_name == 'usuarios' %}active{% endif %}">👤 Usuarios</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
