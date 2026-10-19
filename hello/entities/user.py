@@ -12,7 +12,7 @@ class User:
     @staticmethod
     def get_all():
         with connection.cursor() as cursor:
-            cursor.execute("SELECT name, account, porfile FROM `user`")
+            cursor.execute("SELECT name, account, profile FROM `user`")
             rows = cursor.fetchall()
 
         return [

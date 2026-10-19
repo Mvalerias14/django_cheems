@@ -13,6 +13,9 @@
         <nav>
             <a href="{% url 'menu' %}" class="{% if request.resolver_match.url_name == 'menu' %}active{% endif %}">🏠 Inicio</a>
             <a href="{% url 'usuarios' %}" class="{% if request.resolver_match.url_name == 'usuarios' %}active{% endif %}">👤 Usuarios</a>
+            <a href="{% url 'ordenes' %}" class="{% if request.resolver_match.url_name == 'ordenes' %}active{% endif %}">📋 Órdenes de trabajo</a>
+            <a href="{% url 'historial' %}" class="{% if request.resolver_match.url_name == 'historial' %}active{% endif %}">🕘 Historial</a>
+            <a href="{% url 'log' %}" class="{% if request.resolver_match.url_name == 'log' %}active{% endif %}">📝 Log</a>
         </nav>
     </aside>
 

@@ -1,0 +1,24 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+    <h1>Historial de órdenes</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Usuario</th>
+            <th>Acción</th>
+            <th>Orden</th>
+        </tr>
+        {% for h in history %}
+        <tr>
+            <td>{{ h.id }}</td>
+            <td>{{ h.date }}</td>
+            <td>{{ h.user }}</td>
+            <td>{{ h.action }}</td>
+            <td>{{ h.work_order_id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

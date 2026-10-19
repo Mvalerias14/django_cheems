@@ -1,0 +1,22 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+    <h1>Órdenes de trabajo</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+        </tr>
+        {% for o in orders %}
+        <tr>
+            <td>{{ o.id }}</td>
+            <td>{{ o.title }}</td>
+            <td>{{ o.description }}</td>
+            <td>{{ o.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

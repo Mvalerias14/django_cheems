@@ -1,0 +1,24 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+    <h1>Log de acciones</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Usuario</th>
+            <th>Módulo</th>
+        </tr>
+        {% for l in logs %}
+        <tr>
+            <td>{{ l.id }}</td>
+            <td>{{ l.date }}</td>
+            <td>{{ l.description }}</td>
+            <td>{{ l.user }}</td>
+            <td>{{ l.modulo }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
