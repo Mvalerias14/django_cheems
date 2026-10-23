@@ -1,0 +1,35 @@
+{% extends 'hello/base.html' %}
+
+{% block title %}{% if editando %}Editar usuario{% else %}Nuevo usuario{% endif %}{% endblock %}
+
+{% block content %}
+    <h1>{% if editando %}Editar usuario{% else %}Nuevo usuario{% endif %}</h1>
+
+    {% for e in errores %}<p style="color:#b00020;">{{ e }}</p>{% endfor %}
+
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="name">Nombre</label><br>
+            <input type="text" id="name" name="name" maxlength="60" value="{{ datos.name }}" required>
+        </p>
+        <p>
+            <label for="account">Cuenta</label><br>
+            <input type="text" id="account" name="account" maxlength="100" value="{{ datos.account }}" required>
+        </p>
+        <p>
+            <label for="password">Contraseña{% if editando %} (déjala vacía para no cambiarla){% endif %}</label><br>
+            <input type="password" id="password" name="password" autocomplete="new-password" {% if not editando %}required{% endif %}>
+        </p>
+        <p>
+            <label for="profile">Perfil</label><br>
+            <select id="profile" name="profile">
+                {% for valor, texto in perfiles %}
+                <option value="{{ valor }}" {% if valor == datos.profile %}selected{% endif %}>{{ texto }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <button type="submit">Guardar</button>
+        <a href="{% url 'usuarios' %}">Cancelar</a>
+    </form>
+{% endblock %}

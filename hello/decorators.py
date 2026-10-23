@@ -1,8 +1,9 @@
 from functools import wraps
 
+from django.contrib import messages
 from django.shortcuts import redirect
 
-from .models import User
+from .models import Profile, User
 
 
 def login_requerido(vista):
@@ -16,6 +17,20 @@ def login_requerido(vista):
             request.session.flush()
             return redirect("login")
         request.usuario = usuario  # disponible en la vista y en las plantillas
+        return vista(request, *args, **kwargs)
+
+    return envoltura
+
+
+def solo_admin(vista):
+    """Además de tener sesión, exige el perfil Administrador."""
+
+    @login_requerido
+    @wraps(vista)
+    def envoltura(request, *args, **kwargs):
+        if request.usuario.profile != Profile.ADMINISTRADOR:
+            messages.error(request, "No tienes permiso para esta sección.")
+            return redirect("menu")
         return vista(request, *args, **kwargs)
 
     return envoltura

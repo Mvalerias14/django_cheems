@@ -4,6 +4,7 @@
 
 {% block content %}
     <h1>Usuarios</h1>
+    <p><a href="{% url 'usuario_nuevo' %}">+ Nuevo usuario</a></p>
 
     <table class="table-user">
         <thead>
@@ -11,6 +12,7 @@
                 <th>Nombre</th>
                 <th>Cuenta</th>
                 <th>Perfil</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +21,7 @@
                     <td>{{ user.name }}</td>
                     <td>{{ user.account }}</td>
                     <td>{{ user.get_profile_display|default:"Sin perfil" }}</td>
+                    <td><a href="{% url 'usuario_editar' user.id %}">Editar</a></td>
                 </tr>
             {% endfor %}
         </tbody>
