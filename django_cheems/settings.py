@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/6.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -74,15 +74,34 @@ WSGI_APPLICATION = 'django_cheems.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 
+# BASE DE DATOS (MySQL)
+# Las credenciales NO se escriben en el código. Cada integrante las define
+# como variables de entorno en su propia lap.
+
+# Variables:
+#   DB_PASSWORD  (obligatoria)  contraseña de tu MySQL local
+#   DB_NAME      (opcional)     por defecto: caracoldb
+#   DB_USER      (opcional)     por defecto: root
+#   DB_HOST      (opcional)     por defecto: 127.0.0.1
+#   DB_PORT      (opcional)     por defecto: 3308
+
+# Con estos comandos las pueden definir en la terminal:
+#   Solo para la terminal actual:   $env:DB_PASSWORD = "tu_contraseña"
+#   De forma permanente:            setx DB_PASSWORD "tu_contraseña"
+#   (con setx, cierra y abre la terminal para que tome efecto)
+
+# Cómo definirlas en la Mac (efra)
+#   export DB_PASSWORD="tu_contraseña"
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'caracoldb',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
-        'PORT': '3308',
+        'NAME': os.environ.get('DB_NAME', 'caracoldb'),
+        'USER': os.environ.get('DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('DB_PORT', '3308'),
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
