@@ -18,7 +18,7 @@
                 <tr>
                     <td>{{ user.name }}</td>
                     <td>{{ user.account }}</td>
-                    <td>{{ user.profile.name|default:"Sin perfil"|title }}</td>
+                    <td>{{ user.get_profile_display|default:"Sin perfil" }}</td>
                 </tr>
             {% endfor %}
         </tbody>

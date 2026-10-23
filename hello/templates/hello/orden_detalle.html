@@ -1,0 +1,42 @@
+{% extends 'hello/base.html' %}
+
+{% block title %}Orden #{{ orden.id }}{% endblock %}
+
+{% block content %}
+    <h1>Orden #{{ orden.id }}: {{ orden.title }}</h1>
+    <p>{{ orden.description }}</p>
+    <p><strong>Estado actual:</strong> {{ orden.get_status_display }}</p>
+
+    {% if permitidos %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="status">Cambiar estado a:</label>
+        <select name="status" id="status">
+            {% for valor, texto in permitidos %}
+            <option value="{{ valor }}">{{ texto }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Guardar</button>
+    </form>
+    {% else %}
+    <p><em>Esta orden está cerrada y ya no admite cambios de estado.</em></p>
+    {% endif %}
+
+    <h2>Historial de la orden</h2>
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Usuario</th>
+            <th>Acción</th>
+        </tr>
+        {% for h in historial %}
+        <tr>
+            <td>{{ h.date }}</td>
+            <td>{{ h.user }}</td>
+            <td>{{ h.action }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{% url 'ordenes' %}">← Volver a órdenes</a></p>
+{% endblock %}

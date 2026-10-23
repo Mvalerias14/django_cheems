@@ -150,3 +150,7 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# Las sesiones se guardan en una cookie firmada, así no se necesita
+# ninguna tabla extra en MySQL ni correr "migrate".
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'

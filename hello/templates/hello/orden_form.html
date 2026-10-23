@@ -1,0 +1,23 @@
+{% extends 'hello/base.html' %}
+
+{% block title %}Nueva orden{% endblock %}
+
+{% block content %}
+    <h1>Nueva orden de trabajo</h1>
+
+    {% for e in errores %}<p style="color:#b00020;">{{ e }}</p>{% endfor %}
+
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="title">Título</label><br>
+            <input type="text" id="title" name="title" maxlength="70" value="{{ title }}" required>
+        </p>
+        <p>
+            <label for="description">Descripción</label><br>
+            <textarea id="description" name="description" rows="5" cols="50" required>{{ description }}</textarea>
+        </p>
+        <button type="submit">Crear orden</button>
+        <a href="{% url 'ordenes' %}">Cancelar</a>
+    </form>
+{% endblock %}

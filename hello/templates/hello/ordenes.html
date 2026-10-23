@@ -1,7 +1,10 @@
 {% extends 'hello/base.html' %}
 
+{% block title %}Órdenes de trabajo{% endblock %}
+
 {% block content %}
     <h1>Órdenes de trabajo</h1>
+    <p><a href="{% url 'orden_nueva' %}">+ Nueva orden</a></p>
 
     <table>
         <tr>
@@ -9,14 +12,18 @@
             <th>Título</th>
             <th>Descripción</th>
             <th>Estado</th>
+            <th></th>
         </tr>
         {% for o in orders %}
         <tr>
             <td>{{ o.id }}</td>
             <td>{{ o.title }}</td>
             <td>{{ o.description }}</td>
-            <td>{{ o.status }}</td>
+            <td>{{ o.get_status_display }}</td>
+            <td><a href="{% url 'orden_detalle' o.id %}">Ver</a></td>
         </tr>
+        {% empty %}
+        <tr><td colspan="5">Todavía no hay órdenes.</td></tr>
         {% endfor %}
     </table>
 {% endblock %}

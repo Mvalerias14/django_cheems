@@ -17,9 +17,23 @@
             <a href="{% url 'historial' %}" class="{% if request.resolver_match.url_name == 'historial' %}active{% endif %}">🕘 Historial</a>
             <a href="{% url 'log' %}" class="{% if request.resolver_match.url_name == 'log' %}active{% endif %}">📝 Log</a>
         </nav>
+        <div class="sidebar-user" style="padding:16px; font-size:14px;">
+            <p>👤 {{ request.usuario.name|default:request.usuario.account }}</p>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Cerrar sesión</button>
+            </form>
+        </div>
     </aside>
 
     <main class="content">
+        {% if messages %}
+        <ul style="list-style:none; padding:0;">
+            {% for m in messages %}
+            <li class="msg msg-{{ m.tags }}">{{ m }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         {% block content %}{% endblock %}
     </main>
 

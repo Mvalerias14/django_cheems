@@ -127,3 +127,7 @@ h1 {
 .table-user tbody tr:hover {
     background: #f6f0fc;
 }
+
+.msg { padding: 8px 12px; margin-bottom: 8px; border-radius: 4px; }
+.msg-success { background: #e6f4ea; }
+.msg-error { background: #fde7e9; }
