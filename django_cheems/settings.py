@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'django_cheems.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'caraccol',
+        'NAME': 'caracoldb',
         'USER': 'root',
-        'PASSWORD': 'cfe9el6v1',
+        'PASSWORD': 'admin',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '3308',
     }
 }
 
